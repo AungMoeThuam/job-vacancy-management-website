@@ -6,6 +6,9 @@
             <li><a href="./jobs.php">Jobs</a></li>
             <li><a href="./about.php">About</a></li>
             <li><a href="./enhancements.php">Enhancements</a></li>
+            <?php if (true): ?>
+                <li><a href="./manage.php">Manage</a></li>
+            <?php endif ?>
             <li><a href="./apply.php">Apply Now</a></li>
         </ul>
         <input type="checkbox" name="toggle-menu-controller" id="toggle-menu-controller" aria-hidden="true" />

@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header("location: ./index.php");
     exit();

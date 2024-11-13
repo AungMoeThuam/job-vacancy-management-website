@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -176,4 +180,6 @@
     </main>
 
     <?php include "./footer.php" ?>
-</body></html>
+</body>
+
+</html>

@@ -1,14 +1,8 @@
 <?php
-// Include the settings.php file to connect to the database
+session_start();
+
+
 include './settings.php';
-
-// Establish the database connection
-$conn = new mysqli($host, $username, $password, $database);
-
-// Check if connection was successful
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Set default sorting option
 $sortBy = "EOInumber"; // Default is sorting by EOInumber
@@ -46,57 +40,46 @@ $result = $conn->query($sql);
 
 </head>
 
-<body>
+<body class="manage">
     <?php include "./header.php" ?>
 
 
     <main class="manage-main">
-        <!-- Left side menu -->
-        <div class="sorting-menu">
-            <h3>Sorting Menu</h3>
-            <ul>
-                <li><a href="manage.php?sort_by=first_name">Sort by First Name</a></li>
-                <li><a href="manage.php?sort_by=last_name">Sort by Last Name</a></li>
-                <li><a href="manage.php?sort_by=both">Sort by First and Last Name</a></li>
-            </ul>
-        </div>
+        <div class="search-by">
+            <a href="./manage.php?search-by=job-ref-no">
+                <input type="radio" <?php if (!isset($_GET["search-by"]) || $_GET["search-by"] == "job-ref-no")
+                    echo "checked" ?>>
+                    Search by Job Reference No
+                </a>
+                <a href="./manage.php?search-by=names">
+                    <input type="radio"
+                    <?php if (isset($_GET["search-by"]) && $_GET["search-by"] == "names")
+                    echo "checked" ?>
+                    >
+                    Search by Name
+                </a>
+            </div>
 
-        <div class="content">
-            <table>
-                <thead>
-                    <tr>
-                        <th>EOI Number</th>
-                        <th>Job Reference</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    if ($result->num_rows > 0) {
-                        // Output each row
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row['EOInumber'] . "</td>";
-                            echo "<td>" . $row['job_reference_no'] . "</td>";
-                            echo "<td>" . $row['first_name'] . "</td>";
-                            echo "<td>" . $row['last_name'] . "</td>";
-                            echo "<td>" . $row['email'] . "</td>";
-                            echo "<td>" . $row['phone'] . "</td>";
-                            echo "<td class='edit-btn'><a href='detail.php?id=" . $row['EOInumber'] . "'>Edit</a></td>";
-                            echo "</tr>";
-                        }
-                    } else {
-                        echo "<tr><td colspan='7'>No EOIs found</td></tr>";
-                    }
-                    ?>
-                </tbody>
-            </table>
+            <div>
+            <?php if (!isset($_GET["search-by"]) || $_GET["search-by"] == "job-ref-no"): ?>
+                <form action="./manage-result.php" method="get" class="searching-box" >
+                    <input type="text" name="Job-Reference-No" id="Job-Reference-No" placeholder="Job Reference No">
+                    <input type="submit" value="search">
+                </form>
+            <?php endif ?>
+
+            <?php
+            if (isset($_GET["search-by"]) && $_GET["search-by"] == "names"):
+                ?>
+                <form action="./manage-result.php" method="get" class="searching-box" >
+                    <input type="text" name="First-Name" id="First-Name" placeholder="First Name">
+                    <input type="text" name="Last-Name" id="Last-Name" placeholder="Last Name">
+                    <input type="submit" value="search">
+                </form>
+            <?php endif ?>
         </div>
     </main>
+
     <?php include "./footer.php" ?>
 </body>
 
