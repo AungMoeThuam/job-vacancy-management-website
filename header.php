@@ -1,3 +1,6 @@
+<?php
+include_once "./controllers/auth_controller.php";
+?>
 <header>
     <nav>
         <a href="index.php"><img class="logo" src="./images/logo.svg" alt="Logo Icon" /></a>
@@ -6,10 +9,16 @@
             <li><a href="./jobs.php">Jobs</a></li>
             <li><a href="./about.php">About</a></li>
             <li><a href="./enhancements.php">Enhancements</a></li>
-            <?php if (true): ?>
+            <?php if ($_SESSION["auth"]): ?>
                 <li><a href="./manage.php">Manage</a></li>
             <?php endif ?>
             <li><a href="./apply.php">Apply Now</a></li>
+            <?php if ($_SESSION["auth"]): ?>
+                <li><a href="./logout.php">Logout</a></li>
+            <?php else: ?>
+                <li><a href="./login.php">Login</a></li>
+            <?php endif ?>
+
         </ul>
         <input type="checkbox" name="toggle-menu-controller" id="toggle-menu-controller" aria-hidden="true" />
         <label id="mobile-menu-close-trigger" for="toggle-menu-controller" aria-label="Close menu"></label>
@@ -29,6 +38,7 @@
             <li><a href="./about.php">About</a></li>
             <li><a href="./enhancements.php">Enhancements</a></li>
             <li><a href="./apply.php">Apply Now</a></li>
+            <li><a href="./login.php">Login</a></li>
         </ul>
     </nav>
 </header>

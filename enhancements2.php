@@ -1,4 +1,4 @@
 <?php
-session_start();
-
+include "./utilities/start_session.php";
+start_session();
 ?>

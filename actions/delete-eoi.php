@@ -1,28 +1,23 @@
 <?php
-session_start();
+include "../utilities/start_session.php";
+start_session();
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header("location: ./index.php");
     exit();
 }
 
-include "./settings.php";
+include_once "../settings.php";
 $eoi_id = $_POST["delete-eoi-id"];
-$delete = $_POST["delete"];
+$delete = isset($_POST["delete"]) ? $_POST["delete"] : false;
+
 
 $sql = "DELETE FROM eoi WHERE EOInumber = '$eoi_id'";
-function test()
-{
-    if ($_GET["Job-Reference-No"]) {
-        return "?Job-Reference-No=" . $_GET["Job-Reference-No"];
-    } else if ($_GET["First-Name"] || $_GET["Last-Name"]) {
-        return "?first-name=" . $_GET["First-Name"] . "&last-name=" . $_GET["Last-Name"];
-    }
-}
+
 
 if ($delete == true) {
     $conn->query($sql);
-    $url = "location: ./manage-result.php" . test();
+    $url = "location: .." . $_SESSION["previous_url"];
     header($url);
 }
 ?>
@@ -33,8 +28,8 @@ if ($delete == true) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="./images/logo.svg" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="icon" href="../images/logo.svg" />
+    <link rel="stylesheet" href="../styles/style.css" />
     <title>Delete EOI</title>
 </head>
 
@@ -42,12 +37,12 @@ if ($delete == true) {
     <section class="manage-main">
         <p>Are you sure to delete this eoi?</p>
         <section class="comfirmation-box">
-            <form action="./delete-eoi.php<?php echo test() ?>&eoi-id=<?php echo $eoi_id ?>&delete=true" method="post">
+            <form action="./delete-eoi.php" method="post">
                 <input type="hidden" value="<?php echo true ?>" name="delete">
                 <input type="hidden" value="<?php echo $eoi_id ?>" name="delete-eoi-id">
                 <button>Yes</button>
             </form>
-            <a href="./manage-result.php<?php echo test() ?>">
+            <a href="<?php echo $_SESSION["previous_url"] ?>">
                 <button>No</button>
             </a>
         </section>

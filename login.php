@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+include_once "./controllers/auth_controller.php";
+$auth_controller->check_auth();
 ?>
 
 <!DOCTYPE html>
@@ -18,10 +19,11 @@ session_start();
     <?php include('header.php'); ?>
 
     <main class="login">
+        <h1><?php echo $_SESSION['login_error_message'] ?></h1>
         <section class="login-section">
             <div class="login-container">
                 <h1>Login to InspireCode</h1>
-                <form action="process_login.php" method="POST" class="login-form">
+                <form action="./actions/login_manager.php" method="POST" class="login-form">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required placeholder="Enter your email" />
 

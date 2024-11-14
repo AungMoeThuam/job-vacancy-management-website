@@ -1,4 +1,8 @@
-<?php include('header.php'); ?>
+<?php
+
+include "./utilities/start_session.php";
+start_session();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +15,8 @@
 </head>
 
 <body>
+    <?php include('header.php'); ?>
+
     <main class="register">
         <section class="registration-section">
             <div class="registration-container">
@@ -35,7 +41,8 @@
             </div>
         </section>
     </main>
+    <?php include('footer.php'); ?>
+
 </body>
-<?php include('footer.php'); ?>
 
 </html>

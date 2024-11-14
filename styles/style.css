@@ -595,8 +595,6 @@ form fieldset {
   border: none;
 }
 
-
-
 .input-group {
   grid-column: span 3;
   display: flex;
@@ -608,11 +606,11 @@ form fieldset {
 #Other-Skills {
   grid-column: span 6;
 }
-input[type="text"],
-input[type="email"],
-input[type="date"],
-textarea,
-select {
+.apply form input[type="text"],
+.apply form input[type="email"],
+.apply form input[type="date"],
+.apply form textarea,
+.apply form select {
   border: none;
   border-radius: 6px;
   padding: 12px;
@@ -1264,7 +1262,7 @@ td {
 }
 
 /* manage.php */
-.manage{
+.manage {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1283,7 +1281,7 @@ td {
   gap: 10px;
   background-color: var(--thirdcolor);
 }
-.search-by a{
+.search-by a {
   text-decoration: none;
   padding: 2px;
   border-radius: 3px;
@@ -1298,12 +1296,12 @@ td {
   gap: 1rem;
 }
 
-.searching-box input[type="text"]{
+.searching-box input[type="text"] {
   min-width: 300px;
   max-width: 500px;
 }
 
-.searching-box input[type="submit"]{
+.searching-box input[type="submit"] {
   color: var(--primarycolor);
   padding: 10px;
   border-radius: 4px;
@@ -1348,7 +1346,6 @@ main.login {
   align-items: center;
   height: 80vh;
   font-family: Arial, sans-serif;
-
 }
 
 .login-section {
@@ -1447,12 +1444,12 @@ main.login {
 }
 
 /* manage result page */
-.manage-result-main{
-height: calc(100dvh - 4rem - 10rem);
-gap: 1rem;
-padding: 40px;
+.manage-result-main {
+  height: calc(100dvh - 4rem - 10rem);
+  gap: 1rem;
+  padding: 40px;
 }
-.manage-menu{
+.manage-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1463,63 +1460,69 @@ padding: 40px;
 .manage-menu ul {
   list-style-type: none;
 }
-.manage-menu a{
+.manage-menu a {
   color: var(--fifthcolor);
-
 }
-.eoi-result{
+.eoi-result {
   position: relative;
   height: 50dvh;
   overflow-y: scroll;
 }
-.eoi-result table{
+.eoi-result table {
   width: 100%;
   background-color: var(--fourthcolor);
   border-collapse: collapse;
 }
 
-.eoi-result table thead{
+.eoi-result table thead {
   position: sticky;
   top: 0;
   z-index: 50;
   background-color: var(--fourthcolor);
 }
 
-
-.eoi-result table thead th{
+.eoi-result table thead th {
   padding: 20px;
 }
 
-
-
-.eoi-result table td{
+.eoi-result table td {
   text-align: center;
 }
 
-.delete-btn button{
-  color: var(--fifthcolor);
-  background-color: rgb(210, 9, 9);
-  padding: 10px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
 }
 
+.edit-btn button,
+.delete-btn {
+  background-color: var(--secondarycolor);
+  color: var(--primarycolor);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.delete-btn {
+  background-color: rgb(255, 61, 61);
+  color: var(--fifthcolor);
+}
 /* delete eoi page */
-.delete-body{
+.delete-body {
   display: flex;
   height: 100dvh;
   justify-content: center;
   align-items: center;
 }
 
-.comfirmation-box{
+.comfirmation-box {
   display: flex;
   gap: 1rem;
 }
 
-
-.comfirmation-box button{
+.comfirmation-box button {
   background-color: var(--secondarycolor);
   padding: 10px 20px;
   border-radius: 3px;
@@ -1527,8 +1530,74 @@ padding: 40px;
   cursor: pointer;
 }
 
+/* manage detail page */
+.manage-detail-main {
+  padding: var(--big-screen-padding-axis);
+  background-color: var(--fourthcolor);
+  border-radius: 8px;
+  margin: 2rem auto;
+  max-width: 800px;
+  color: var(--fifthcolor);
+}
 
+.manage-title {
+  color: var(--secondarycolor);
+  text-align: center;
+}
 
+.manage-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
 
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
 
+.form-column {
+  flex: 0 0 48%;
+  /* Each input takes about 48% of the row */
+}
 
+.manage-label {
+  margin: 10px 0 5px;
+  color: var(--fifthcolor);
+}
+
+.manage-input {
+  padding: 0.5rem;
+  width: 100%;
+  background-color: var(--primarycolor);
+  color: var(--fifthcolor);
+  border: 1px solid var(--secondarycolor);
+  border-radius: 4px;
+}
+
+.manage-input:disabled {
+  border: 1px solid var(--secondarycolor);
+  background-color: var(--fourthcolor);
+}
+
+.manage-textarea {
+  resize: vertical;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.manage-button {
+  background-color: var(--secondarycolor);
+  color: var(--primarycolor);
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.manage-button:hover {
+  background-color: var(--primarycolor);
+  color: var(--secondarycolor);
+}
