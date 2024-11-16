@@ -1,7 +1,7 @@
 <?php
 
-include_once "./controllers/error_controller.php";
-include_once "./utilities/validate_date.php";
+include_once "./error_controller.php";
+include_once "./validate_date.php";
 
 function sanitize_input($data)
 {

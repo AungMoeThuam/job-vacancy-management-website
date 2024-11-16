@@ -1,13 +1,13 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/auth_controller.php";
+include_once "./auth_controller.php";
 $auth_controller->check_auth();
-var_dump($_SESSION);
+
 
 include './settings.php';
 
-// Set default sorting option
+
 $sortBy = "EOInumber"; // Default is sorting by EOInumber
 
 // Check if sorting option is selected via GET

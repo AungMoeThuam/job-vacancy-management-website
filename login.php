@@ -1,11 +1,11 @@
 <?php
-include_once "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/auth_controller.php";
-include_once "./controllers/error_controller.php";
-var_dump($_SESSION);
+include_once "./auth_controller.php";
+include_once "./error_controller.php";
+
 $auth_controller->check_auth();
-echo $_SERVER['REQUEST_URI'];
+// echo $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ echo $_SERVER['REQUEST_URI'];
         <section class="login-section">
             <div class="login-container">
                 <h1>Login to Manager Dashboard</h1>
-                <form action="./actions/login_manager.php" method="POST" class="login-form">
+                <form action="./login_manager_action.php" method="POST" class="login-form">
 
 
                     <label for="username">Username:</label>

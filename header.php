@@ -1,5 +1,5 @@
 <?php
-include_once "./controllers/auth_controller.php";
+include_once "./auth_controller.php";
 ?>
 <header>
     <nav>

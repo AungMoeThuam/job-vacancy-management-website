@@ -1,6 +1,6 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/auth_controller.php";
+include_once "./auth_controller.php";
 $auth_controller->logout();
 header("location: ./index.php");

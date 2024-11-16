@@ -1,7 +1,7 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-var_dump($_SESSION);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

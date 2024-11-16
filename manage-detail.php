@@ -1,9 +1,9 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/auth_controller.php";
+include_once "./auth_controller.php";
 $auth_controller->check_auth();
-include_once "./controllers/eoi-controller.php";
+include_once "./eoi-controller.php";
 
 $EOInumber = $_GET["EOInumber"];
 $row = $eoi_controller->get_single_eoi_row($EOInumber);  // Returns the first row as an associative array
@@ -28,7 +28,7 @@ $row = $eoi_controller->get_single_eoi_row($EOInumber);  // Returns the first ro
     <main class="manage-detail-main">
         <h2 class="manage-title">Edit EOI Number - <?php echo $row['EOInumber']; ?></h2>
 
-        <form class="manage-form" action="./actions/update_eoi.php" method="post">
+        <form class="manage-form" action="./update_eoi_action.php" method="post">
             <input type="hidden" name="EOInumber" value="<?php echo $row['EOInumber']; ?>">
 
             <label class="manage-label" for="job_reference_no">Job Reference No:</label>

@@ -14,8 +14,10 @@ class Error_controller
 
     function get_error($key)
     {
-        if ($_SESSION["errors"] !== null && isset($_SESSION["errors"][$key]))
+
+        if (isset($_SESSION["errors"][$key])) {
             return $_SESSION["errors"][$key];
+        }
 
         return false;
 
@@ -27,17 +29,26 @@ class Error_controller
 
     }
 
+    function unset_error($key)
+    {
+        unset($_SESSION["errors"][$key]);
+
+    }
+
     function clear_all_errors()
     {
-        echo "clear";
+
         foreach ($_SESSION["errors"] as $key => $value) {
-            $_SESSION["errors"][$key] = null;
+            unset($_SESSION["errors"][$key]);
         }
     }
 
     function display_error($key)
     {
+
         $error_message = $this->get_error($key);
+
+
         if ($error_message)
             echo "<p class='error-message'>" . $error_message . "</p>";
 

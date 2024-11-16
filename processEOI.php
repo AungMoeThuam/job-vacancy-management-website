@@ -5,9 +5,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 }
 include "./utilities/start_session.php";
 start_session();
-include "./controllers/error_controller.php";
-include "./utilities/validate_input.php";
-include './settings.php';
+include_once "./controllers/error_controller.php";
+include_once "./utilities/validate_input.php";
+include_once './settings.php';
 
 
 // Check if form data is submitted

@@ -1,5 +1,7 @@
 <?php
+
 include_once "./settings.php";
+
 
 class Manager_Controller
 {
@@ -40,12 +42,10 @@ class Manager_Controller
         $username = $new_manager["username"];
         $password = $new_manager["password"];
         $sql = "INSERT INTO managers (username,password) VALUES ('$username','$password')";
-        $result = $this->db->query($sql);
+        $this->db->query($sql);
 
-        if ($result->num_rows == 1) {
-            return $result->fetch_assoc()["username"];
-        } else
-            return false;
+
+        return $username;
     }
 }
 

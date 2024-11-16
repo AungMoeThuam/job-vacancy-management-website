@@ -1,10 +1,10 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/auth_controller.php";
+include_once "./auth_controller.php";
 $auth_controller->check_auth();
 
-include_once "./controllers/eoi-controller.php";
+include_once "./eoi-controller.php";
 
 // Set default sorting option
 $sortBy = "EOInumber"; // Default is sorting by EOInumber
@@ -129,7 +129,7 @@ $result = $eoi_controller->get_all_eoi_rows(search_by([$search_job_ref_no, $sear
                             echo "<td>" . $row['status'] . "</td>";
                             echo "<td>" . display_skill_if_exist($row["skill1"]) . display_skill_if_exist($row["skill2"]) . display_skill_if_exist($row["skill3"]) . display_skill_if_exist($row["skill4"]) . "</td>";
                             echo "<td class='actions'>
-                                    <form action='./actions/delete-eoi.php' method='post'>
+                                    <form action='./delete_eoi_action.php' method='post'>
                                         <input type='hidden' name='delete-eoi-id' value=" . $row['EOInumber'] . "/>
                                         <input type='hidden' name='Job-Reference-No' value=" . $row['job_reference_no'] . "/>
                                         <input type='hidden' name='sort-by' value=''/>

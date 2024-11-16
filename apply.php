@@ -1,7 +1,7 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include "./controllers/error_controller.php";
+include_once "./error_controller.php";
 
 ?>
 <!DOCTYPE html>

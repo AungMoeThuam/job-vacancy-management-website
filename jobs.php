@@ -1,8 +1,8 @@
 <?php
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/job_description_controller.php";
-include_once "./utilities/to_array.php";
+include_once "./job_description_controller.php";
+include_once "./to_array.php";
 $job_descriptions = $job_description_controller->get_all_job_rows();
 ?>
 <!DOCTYPE html>

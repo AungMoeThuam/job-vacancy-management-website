@@ -1,11 +1,11 @@
 <?php
 
-include "./utilities/start_session.php";
+include_once "./start_session.php";
 start_session();
-include_once "./controllers/auth_controller.php";
+include_once "./auth_controller.php";
 $auth_controller->check_auth();
-include_once "./controllers/error_controller.php";
-var_dump($_SESSION);
+include_once "./error_controller.php";
+
 
 ?>
 <!DOCTYPE html>
@@ -27,7 +27,7 @@ var_dump($_SESSION);
         <section class="registration-section">
             <div class="registration-container">
                 <h1>Create Manager Account</h1>
-                <form action="./actions/register_manager.php" method="POST" class="registration-form">
+                <form action="./register_manager_action.php" method="POST" class="registration-form">
 
 
                     <label for="username">Username:</label>

@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header("location: ./index.php");
     exit();
 }
-include_once '../controllers/eoi-controller.php';
+include_once './eoi-controller.php';
 
 $EOInumber = $_POST['EOInumber'];
 $job_reference_no = $_POST['job_reference_no'];
