@@ -1,5 +1,5 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/settings.php";
+include_once "./settings.php";
 
 class Eoi_Controller
 {

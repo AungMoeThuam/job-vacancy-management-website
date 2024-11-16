@@ -5,7 +5,7 @@ include_once "./controllers/auth_controller.php";
 include_once "./controllers/error_controller.php";
 var_dump($_SESSION);
 $auth_controller->check_auth();
-
+echo $_SERVER['REQUEST_URI'];
 ?>
 
 <!DOCTYPE html>

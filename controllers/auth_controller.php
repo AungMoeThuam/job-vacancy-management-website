@@ -1,6 +1,6 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/error_controller.php";
-include_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/manager_controller.php";
+include_once "./controllers/error_controller.php";
+include_once "./controllers/manager_controller.php";
 class Auth_Controller
 {
     private Manager_Controller $manager_controller;
@@ -33,7 +33,7 @@ class Auth_Controller
         $confirm_password = $new_manager["confirm_password"];
         if ($password !== $confirm_password) {
             $this->error_controller->set_error("register_password", "passwords are not matched!");
-            header("location: ../register.php");
+            header("location: ./register.php");
             return exit();
 
         }
@@ -41,7 +41,7 @@ class Auth_Controller
         $result = $this->manager_controller->find_manager_by_username($new_manager);
         if ($result) {
             $this->error_controller->set_error("register_username", "username already taken!");
-            header("location: ../register.php");
+            header("location: ./register.php");
             return exit();
         } else {
             $result = $this->manager_controller->create_manager($new_manager);
@@ -53,7 +53,7 @@ class Auth_Controller
     function login_success($manager_username)
     {
         if (!$this->is_the_pending_attempt_time_passed()) {
-            header("location: ../login.php");
+            header("location: ./login.php");
             exit();
 
         } else {
@@ -61,7 +61,7 @@ class Auth_Controller
             $_SESSION["auth"] = $manager_username;
             $_SESSION["failed_attempts"] = 0;
             unset($_SESSION["last_failed_attempt_time"]);
-            header("location: ../manage.php");
+            header("location: ./manage.php");
             exit();
         }
     }
@@ -95,7 +95,7 @@ class Auth_Controller
 
         }
 
-        header("location: ../login.php");
+        header("location: ./login.php");
         exit();
     }
 
@@ -128,13 +128,17 @@ class Auth_Controller
 
     function check_auth()
     {
+
         if ($this->is_the_pending_attempt_time_passed() && $this->error_controller->get_error("login_error_message") !== null) {
             $this->error_controller->set_error("login_error_message", null);
         }
-        if (!$_SESSION["auth"] && $_SERVER['REQUEST_URI'] !== "/login.php" && $_SERVER['REQUEST_URI'] !== "/register.php")
-            header("location: /");
-        else if ($_SESSION["auth"] && ($_SERVER['REQUEST_URI'] === "/login.php" || $_SERVER['REQUEST_URI'] === "/register.php")) {
-            header("location: ../manage.php");
+        $login_url = str_contains($_SERVER['REQUEST_URI'], "/login.php");
+        $regiser_url = str_contains($_SERVER['REQUEST_URI'], "/login.php");
+        if (!$_SESSION["auth"] && !$login_url && !$regiser_url) {
+            header("location: ./index.php");
+
+        } else if ($_SESSION["auth"] && ($login_url || $regiser_url)) {
+            header("location: ./manage.php");
         }
     }
 
