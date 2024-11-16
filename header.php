@@ -9,6 +9,7 @@ include_once "./auth_controller.php";
             <li><a href="./jobs.php">Jobs</a></li>
             <li><a href="./about.php">About</a></li>
             <li><a href="./enhancements.php">Enhancements</a></li>
+            <li><a href="./enhancements2.php">Enhancements2</a></li>
             <?php if ($_SESSION["auth"]): ?>
                 <li><a href="./manage.php">Manage</a></li>
             <?php endif ?>
@@ -37,6 +38,7 @@ include_once "./auth_controller.php";
             <li><a href="./jobs.php">Jobs</a></li>
             <li><a href="./about.php">About</a></li>
             <li><a href="./enhancements.php">Enhancements</a></li>
+            <li><a href="./enhancements2.php">Enhancements2</a></li>
             <li><a href="./apply.php">Apply Now</a></li>
             <li><a href="./login.php">Login</a></li>
         </ul>

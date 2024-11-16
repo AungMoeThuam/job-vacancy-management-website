@@ -125,7 +125,8 @@ class Auth_Controller
         unset($_SESSION["auth"]);
         unset($_SESSION["failed_attempts"]);
         $this->error_controller->clear_all_errors();
-
+        header("location: ./index.php");
+        exit();
 
     }
 
@@ -140,9 +141,12 @@ class Auth_Controller
         $regiser_url = str_contains($_SERVER['REQUEST_URI'], "/register.php");
         if (!$_SESSION["auth"] && !$login_url && !$regiser_url) {
             header("location: ./index.php");
+            exit();
 
         } else if ($_SESSION["auth"] && ($login_url || $regiser_url)) {
             header("location: ./manage.php");
+            exit();
+
         }
     }
 
