@@ -33,7 +33,7 @@ start_session();
                     pages. This enhances navigation, making the user interaction feel
                     more fluid and engaging.
                 </p>
-                <a href="./index.html">To Index Page</a>
+                <a href="./index.php">To Index Page</a>
                 <details>
                     <summary>Show Code Implementation</summary>
 
@@ -53,7 +53,7 @@ start_session();
                     pages, we had to implement different rules for each page. The
                     following code is for about us page.
                 </p>
-                <a href="./index.html">To About Us Page</a>
+                <a href="./about.php">To About Us Page</a>
                 <details>
                     <summary>Show Code Implementation in about us page</summary>
 
@@ -105,7 +105,7 @@ start_session();
                     smooth and user-friendly form validation experience, displaying
                     feedback only when necessary.
                 </p>
-                <a href="./apply.html">To form</a>
+                <a href="./apply.php">To form</a>
                 <details>
                     <summary>Show Code Implementation in about us page</summary>
 
@@ -128,7 +128,7 @@ start_session();
                     .hometown-content becomes visible, overlaying text on the image.
                     This combination of zoom and content reveal adds an engaging
                     interactive experience to the card design
-                    <a href="./about.html">To About Page</a>
+                    <a href="./about.php">To About Page</a>
                 <details>
                     <summary>Show Code Implementation</summary>
 
