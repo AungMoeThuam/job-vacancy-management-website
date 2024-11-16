@@ -5,8 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 }
 include "../utilities/start_session.php";
 start_session();
-
 include_once "../controllers/auth_controller.php";
 
-$manager = $_POST;
-$auth_controller->login($manager);
+$new_manager = $_POST;
+$auth_controller->register($new_manager);

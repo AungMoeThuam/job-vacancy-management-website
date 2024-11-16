@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/settings.php";
 
-class Eoi_constoller
+class Eoi_Controller
 {
     function __construct($conn)
     {
@@ -93,4 +93,4 @@ class Eoi_constoller
     }
 }
 
-$eoi_controller = new Eoi_constoller($conn);
+$eoi_controller = new Eoi_Controller($conn);

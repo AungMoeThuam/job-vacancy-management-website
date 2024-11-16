@@ -1,8 +1,10 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    header("location: ./index.php");
+    exit();
+}
+include_once '../controllers/eoi-controller.php';
 
-include_once '../controllers/eoi-constoller.php';
-
-// Grab the POST variables from the form
 $EOInumber = $_POST['EOInumber'];
 $job_reference_no = $_POST['job_reference_no'];
 $first_name = $_POST['first_name'];

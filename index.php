@@ -1,8 +1,7 @@
 <?php
 include "./utilities/start_session.php";
 start_session();
-var_dump($_SESSION);
-echo $_SERVER['REQUEST_URI'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

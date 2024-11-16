@@ -32,6 +32,10 @@ a {
   text-decoration: none;
 }
 
+.error {
+  color: red;
+}
+
 body {
   color: #fff;
   background-color: var(--primarycolor);
@@ -531,13 +535,7 @@ nav {
 }
 
 /* apply page */
-.apply {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--big-screen-padding-axis);
-  padding-top: 4rem;
-}
+
 .register-photo {
   height: 80dvh;
   flex: 1;
@@ -555,80 +553,6 @@ nav {
   color: var(--secondarycolor);
   font-size: 3em;
 }
-.form-container {
-  flex: 1;
-}
-
-.apply form {
-  width: 100%;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 1em;
-  border-radius: 20px;
-  box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.1);
-  background-color: var(--thirdcolor);
-  color: #fff;
-  margin: auto;
-}
-
-.apply form h2 {
-  padding: 1rem;
-  text-align: center;
-  font-size: 1.2em;
-  grid-column: span 6;
-}
-
-.apply form button {
-  grid-column: 3 / 5;
-  padding: 0.8rem 1rem;
-  border-radius: 10px;
-  font-size: 1em;
-  font-weight: bold;
-  background-color: var(--secondarycolor);
-  border: none;
-  color: var(--primarycolor);
-  cursor: pointer;
-}
-
-form fieldset {
-  border: none;
-}
-
-.input-group {
-  grid-column: span 3;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 5px 0px;
-  font-size: 1rem;
-}
-#Other-Skills {
-  grid-column: span 6;
-}
-.apply form input[type="text"],
-.apply form input[type="email"],
-.apply form input[type="date"],
-.apply form textarea,
-.apply form select {
-  border: none;
-  border-radius: 6px;
-  padding: 12px;
-  background-color: var(--fourthcolor);
-  color: #fff;
-  font-size: 1rem;
-}
-
-#Other-Skills-Textarea {
-  grid-column: span 6;
-}
-.input-group select {
-  padding: 10px;
-}
-
-input {
-  outline: none;
-}
 
 .error-message {
   display: none;
@@ -637,8 +561,7 @@ input {
 }
 
 /*showing error message if input does not follow the pattern rule */
-#skill-list:invalid .error-message,
-#gender:invalid .error-message,
+
 input:invalid ~ .error-message,
 select:invalid ~ .error-message {
   display: block;
@@ -650,18 +573,11 @@ input:focus:valid ~ .error-message {
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
-  .form-container {
-    flex: content;
-    padding: var(--big-screen-padding-axis);
-  }
   form {
     padding: 1rem;
   }
   .register-photo {
     display: none;
-  }
-  .input-group {
-    grid-column: span 6;
   }
 }
 
@@ -670,16 +586,9 @@ input:focus:valid ~ .error-message {
   .apply {
     padding: 1rem;
   }
-  .form-container {
-    flex: content;
-    padding: 0;
-  }
+
   form {
     width: 100%;
-  }
-
-  .input-group {
-    grid-column: span 6;
   }
 }
 
@@ -723,14 +632,11 @@ input:focus:valid ~ .error-message {
   padding: 4px 10px;
   border-radius: 20px;
 }
-.location p.office {
+.location p {
   background-color: var(--secondarycolor);
   color: var(--primarycolor);
 }
-.location p.remote {
-  background-color: var(--fifthcolor);
-  color: var(--primarycolor);
-}
+
 .salary {
   display: flex;
   justify-content: space-between;
@@ -1279,7 +1185,8 @@ td {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: var(--thirdcolor);
+  background-color: var(--fourthcolor);
+  border-radius: 10px;
 }
 .search-by a {
   text-decoration: none;
@@ -1379,7 +1286,7 @@ main.login {
   text-align: left;
 }
 
-.login-form input[type="email"],
+.login-form input[type="text"],
 .login-form input[type="password"] {
   padding: 0.8rem;
   font-size: 1rem;
@@ -1387,6 +1294,10 @@ main.login {
   border-radius: 5px;
   background-color: var(--thirdcolor);
   color: var(--fifthcolor);
+}
+.login-form a {
+  color: var(--secondarycolor);
+  text-decoration: underline;
 }
 
 .login-btn {
@@ -1531,6 +1442,7 @@ main.login {
 }
 
 /* manage detail page */
+.apply-main, /*apply page class */
 .manage-detail-main {
   padding: var(--big-screen-padding-axis);
   background-color: var(--fourthcolor);
@@ -1538,6 +1450,13 @@ main.login {
   margin: 2rem auto;
   max-width: 800px;
   color: var(--fifthcolor);
+}
+.apply-main {
+  /*css for apply page which is shared with manage detail page */
+  background-color: var(--primarycolor);
+  display: flex;
+  justify-content: space-between;
+  max-width: 100dvw;
 }
 
 .manage-title {
@@ -1549,6 +1468,14 @@ main.login {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
+}
+
+.apply-main .manage-form {
+  /*css for apply page which is shared with manage detail page */
+  flex: 1;
+  background-color: var(--fourthcolor);
+  padding: 1rem;
+  border-radius: 10px;
 }
 
 .form-row {

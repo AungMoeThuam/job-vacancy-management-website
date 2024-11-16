@@ -4,7 +4,7 @@ start_session();
 include_once "./controllers/auth_controller.php";
 $auth_controller->check_auth();
 
-include_once "./controllers/eoi-constoller.php";
+include_once "./controllers/eoi-controller.php";
 
 // Set default sorting option
 $sortBy = "EOInumber"; // Default is sorting by EOInumber

@@ -3,6 +3,7 @@ include "./utilities/start_session.php";
 start_session();
 include_once "./controllers/auth_controller.php";
 $auth_controller->check_auth();
+var_dump($_SESSION);
 
 include './settings.php';
 
@@ -47,6 +48,7 @@ $result = $conn->query($sql);
 
 
     <main class="manage-main">
+        <h3 class="manage-title">Manage Job Applications</h3>
         <div class="search-by">
             <a href="./manage.php?search-by=job-ref-no">
                 <input type="radio" <?php if (!isset($_GET["search-by"]) || $_GET["search-by"] == "job-ref-no")
@@ -63,9 +65,10 @@ $result = $conn->query($sql);
             <div>
             <?php if (!isset($_GET["search-by"]) || $_GET["search-by"] == "job-ref-no"): ?>
                 <form action="./manage-result.php" method="get" class="searching-box">
-                    <input type="text" name="Job-Reference-No" id="Job-Reference-No" placeholder="Job Reference No">
+                    <input class="manage-input" type="text" name="Job-Reference-No" id="Job-Reference-No"
+                        placeholder="Job Reference No">
                     <input type="hidden" name="sort-by" id="sort-by" value="">
-                    <input type="submit" value="search">
+                    <input class="manage-button" type="submit" value="search">
                 </form>
             <?php endif ?>
 
@@ -73,10 +76,10 @@ $result = $conn->query($sql);
             if (isset($_GET["search-by"]) && $_GET["search-by"] == "names"):
                 ?>
                 <form action="./manage-result.php" method="get" class="searching-box">
-                    <input type="text" name="First-Name" id="First-Name" placeholder="First Name">
-                    <input type="text" name="Last-Name" id="Last-Name" placeholder="Last Name">
+                    <input class="manage-input" type="text" name="First-Name" id="First-Name" placeholder="First Name">
+                    <input class="manage-input" type="text" name="Last-Name" id="Last-Name" placeholder="Last Name">
                     <input type="hidden" name="sort-by" id="sort-by" value="">
-                    <input type="submit" value="search">
+                    <input class="manage-button" type="submit" value="search">
                 </form>
             <?php endif ?>
         </div>

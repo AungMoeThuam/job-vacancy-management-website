@@ -3,7 +3,7 @@ include "./utilities/start_session.php";
 start_session();
 include_once "./controllers/auth_controller.php";
 $auth_controller->check_auth();
-include_once "./controllers/eoi-constoller.php";
+include_once "./controllers/eoi-controller.php";
 
 $EOInumber = $_GET["EOInumber"];
 $row = $eoi_controller->get_single_eoi_row($EOInumber);  // Returns the first row as an associative array
@@ -17,7 +17,8 @@ $row = $eoi_controller->get_single_eoi_row($EOInumber);  // Returns the first ro
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Manage Detail</title>
+    <link rel="icon" href="./images/logo.svg" />
     <link rel="stylesheet" href="./styles/style.css" />
 
 </head>

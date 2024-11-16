@@ -4,16 +4,14 @@ $username = "root";
 $password = "";
 $database = "jobs";
 
-// Create connection
 $conn = new mysqli($host, $username, $password, $database);
 
-// Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Check if the table exists, create if not
-$createTableSQL = "CREATE TABLE IF NOT EXISTS eoi (
+$create_eoi_table = "CREATE TABLE IF NOT EXISTS eoi (
         EOInumber INT AUTO_INCREMENT PRIMARY KEY,
         job_reference_no VARCHAR(5) NOT NULL,
         first_name VARCHAR(20) NOT NULL,
@@ -35,16 +33,24 @@ $createTableSQL = "CREATE TABLE IF NOT EXISTS eoi (
     )";
 
 $create_manager_table = "CREATE TABLE IF NOT EXISTS managers (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    username VARCHAR(255) PRIMARY KEY NOT NULL,
+    password VARCHAR(255) NOT NULL
+)";
+
+$create_job_description_table = "CREATE TABLE IF NOT EXISTS job_descriptions (
+    job_reference_no CHAR(5) PRIMARY KEY NOT NULL, 
+    title VARCHAR(255) NOT NULL, 
+    salary_range VARCHAR(50) NOT NULL, 
+    working_hour VARCHAR(50) NOT NULL, 
+    working_from ENUM('Remote', 'Office','Hybrid') NOT NULL, 
+    reports_to VARCHAR(255) NOT NULL, 
+    description TEXT NOT NULL, 
+    responsibilities TEXT NOT NULL, 
+    essential_qualifications TEXT NOT NULL, 
+    preferable_qualifications TEXT NOT NULL, 
+    reference VARCHAR(255) 
 )";
 $conn->query($create_manager_table);
+$conn->query($create_job_description_table);
 // Execute the query
-if ($conn->query($createTableSQL) === TRUE) {
-    echo "Table 'eoi' created successfully.";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
+$conn->query($create_eoi_table);

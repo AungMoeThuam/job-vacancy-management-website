@@ -1,11 +1,11 @@
 <?php
-include "../utilities/start_session.php";
-start_session();
-
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header("location: ./index.php");
     exit();
 }
+include "../utilities/start_session.php";
+start_session();
+
 
 include_once "../settings.php";
 $eoi_id = $_POST["delete-eoi-id"];
