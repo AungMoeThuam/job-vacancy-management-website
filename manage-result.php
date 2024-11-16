@@ -1,6 +1,8 @@
 <?php
 include "./utilities/start_session.php";
 start_session();
+include_once "./controllers/auth_controller.php";
+$auth_controller->check_auth();
 
 include_once "./controllers/eoi-constoller.php";
 
