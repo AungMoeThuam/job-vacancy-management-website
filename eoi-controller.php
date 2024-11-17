@@ -3,7 +3,6 @@ include_once "./settings.php";
 
 class Eoi_Controller
 {
-    private mysqli $db;
     function __construct($conn)
     {
         $this->db = $conn;
@@ -29,7 +28,7 @@ class Eoi_Controller
         }
 
         if (!is_array($search) && $search_by_all == "all") {
-            $sql = "SELECT * FROM eoi ";
+            $sql = "SELECT * FROM eoi $orderBy ";
         } else if (!is_array($search) && $search_job_ref_no != "") {
             $sql = "SELECT * FROM eoi WHERE job_reference_no = '$search_job_ref_no' $orderBy ";
         } else {

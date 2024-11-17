@@ -76,7 +76,7 @@ $job_descriptions = $job_description_controller->get_all_job_rows();
                         </ol>
                     </section>
                     <a class="reference" href="<?php echo $job["reference"] ?>">Reference</a>
-                    <a href="./apply.html"><button>Apply Now</button></a>
+                    <a href="./apply.php"><button>Apply Now</button></a>
                 </section>
 
             <?php endforeach; ?>

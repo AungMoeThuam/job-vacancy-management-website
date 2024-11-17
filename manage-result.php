@@ -75,6 +75,9 @@ $result = $eoi_controller->get_all_eoi_rows(search_by([$search_by_all, $search_j
                         echo "selected" ?>>By Name</option>
                     </select>
 
+                <?php if ($search_by_all): ?>
+                    <input type="hidden" name="eoi" value="<?php echo $search_by_all; ?>" />
+                <?php endif; ?>
                 <?php if ($search_first_name): ?>
                     <input type="hidden" name="First-Name" value="<?php echo $search_first_name; ?>" />
                 <?php endif; ?>

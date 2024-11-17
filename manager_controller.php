@@ -5,7 +5,7 @@ include_once "./settings.php";
 
 class Manager_Controller
 {
-    private mysqli $db;
+
     function __construct($conn)
     {
         $this->db = $conn;

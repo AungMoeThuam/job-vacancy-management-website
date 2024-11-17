@@ -3,8 +3,7 @@ include_once "./error_controller.php";
 include_once "./manager_controller.php";
 class Auth_Controller
 {
-    private Manager_Controller $manager_controller;
-    private Error_controller $error_controller;
+
 
     function __construct($error_controller, $manager_controller)
     {
@@ -137,8 +136,8 @@ class Auth_Controller
         if ($this->is_the_pending_attempt_time_passed() && isset($_SESSION["last_failed_attempt_time"])) {
             $this->error_controller->unset_error("login_error_message");
         }
-        $login_url = str_contains($_SERVER['REQUEST_URI'], "/login.php");
-        $regiser_url = str_contains($_SERVER['REQUEST_URI'], "/register.php");
+        $login_url = strpos($_SERVER['REQUEST_URI'], "/login.php");
+        $regiser_url = strpos($_SERVER['REQUEST_URI'], "/register.php");
         if (!$_SESSION["auth"] && !$login_url && !$regiser_url) {
             header("location: ./index.php");
             exit();
