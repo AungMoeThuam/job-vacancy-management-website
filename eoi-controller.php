@@ -112,10 +112,6 @@ class Eoi_Controller
         $postcode = $new_eoi["postcode"];
         $email = $new_eoi["email"];
         $phone = $new_eoi["phone"];
-        $skill1 = $new_eoi["skill1"];
-        $skill2 = $new_eoi["skill2"];
-        $skill3 = $new_eoi["skill3"];
-        $skill4 = $new_eoi["skill4"];
         $other_skills = $new_eoi["other_skills"];
         $date_of_birth = $new_eoi["date_of_birth"];
         $gender = $new_eoi["gender"];
@@ -132,10 +128,6 @@ class Eoi_Controller
             postcode = '$postcode',
             email = '$email',
             phone = '$phone',
-            skill1 = '$skill1',
-            skill2 = '$skill2',
-            skill3 = '$skill3',
-            skill4 = '$skill4',
             other_skills = " . ($other_skills ? "'$other_skills'" : "NULL") . ",
             status = '$status',
             date_of_birth = '$date_of_birth',

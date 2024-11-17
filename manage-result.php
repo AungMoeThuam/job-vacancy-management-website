@@ -13,7 +13,7 @@ if (isset($_GET['sort-by'])) {
     $sortBy = $_GET['sort-by']; // Can be 'first_name', 'last_name', or 'both'
 }
 
-function check($key)
+function check($key)//function to check a key is set in $_GET or not
 {
     return !isset($_GET[$key]) ? "" : $_GET[$key];
 }
@@ -24,12 +24,12 @@ $search_last_name = check("Last-Name");
 
 $_SESSION["previous_url"] = $_SERVER["REQUEST_URI"];
 
-function display_skill_if_exist($skill)
+function display_skill_if_exist($skill)//to display skill from database data
 {
-    return $skill == 0 ? "" : $skill . ", ";
+    return $skill == "0" ? "" : $skill . ", ";
 }
 
-function search_by($array)
+function search_by($array) //function to check search by all, job reference or names
 {
     if ($array[0] == "all")
         return $array[0];

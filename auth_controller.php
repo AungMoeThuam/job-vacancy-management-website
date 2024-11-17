@@ -4,7 +4,6 @@ include_once "./manager_controller.php";
 class Auth_Controller
 {
 
-
     function __construct($error_controller, $manager_controller)
     {
         $this->error_controller = $error_controller;
@@ -148,8 +147,6 @@ class Auth_Controller
 
         }
     }
-
-
 }
 
 $auth_controller = new Auth_Controller($error_controller, $manager_controller);

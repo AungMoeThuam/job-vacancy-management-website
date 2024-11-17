@@ -3,15 +3,6 @@
 class Error_controller
 {
 
-    function show_error()
-    {
-        if ($_SESSION["errors"]) {
-            foreach ($_SESSION["errors"] as $key => $value) {
-                echo "<p class='error'>" . $value . "</p>";
-            }
-        }
-    }
-
     function get_error($key)
     {
 

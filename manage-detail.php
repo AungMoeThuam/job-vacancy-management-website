@@ -139,40 +139,37 @@ $row = $eoi_controller->get_single_eoi_row($EOInumber);  // Returns the first ro
 
                     <label class="manage-label">Skills:</label><br>
                     <label>
-                        <input type="checkbox" name="skills[]" value="Mobile Development"
-                            <?php echo $row["skill1"] == "Mobile Development" ?  "checked" : ""; ?>>
-                        Mobile Development
-                    </label><br>
 
-                    <label>
-                        <input type="checkbox" name="skills[]" value="Web Development"
-                            <?php  echo $row["skill2"] == "Web Development" ?  "checked" : ""; ?>>
-                        Web Development
-                    </label><br>
+                        <?php if ($row["skill1"] != "0")
+                            echo $row["skill1"] ?>
+                        </label><br>
 
-                    <label>
-                        <input type="checkbox" name="skills[]" value="DevOps"
-                            <?php  echo $row["skill3"] == "DevOps" ?  "checked" : ""; ?>>
-                        DevOps
-                    </label><br>
+                        <label>
+                        <?php if ($row["skill2"] != "0")
+                            echo $row["skill2"] ?>
+                        </label><br>
 
-                    <label>
-                        <input type="checkbox" name="skills[]" value="Database"
-                            <?php echo $row["skill4"] == "Database" ?  "checked" : ""; ?>>
-                        Database
-                    </label><br>
+                        <label>
+                        <?php if ($row["skill3"] != "0")
+                            echo $row["skill3"] ?>
+                        </label><br>
 
-                    <label>
-                        <input type="checkbox" name="other" value="Other">
-                        Other
-                    </label>
+                        <label>
+                        <?php if ($row["skill4"] != "0")
+                            echo $row["skill4"] ?>
+                        </label><br>
 
+                        <label>
+                            <input type="checkbox" name="other" value="Other">
+                            Other
+                        </label>
+
+                    </div>
                 </div>
-            </div>
 
-            <label class="manage-label" for="other_skills">Other Skills:</label>
-            <textarea class="manage-input manage-textarea" id="other_skills"
-                name="other_skills"><?php echo $row['other_skills']; ?></textarea>
+                <label class="manage-label" for="other_skills">Other Skills:</label>
+                <textarea class="manage-input manage-textarea" id="other_skills"
+                    name="other_skills"><?php echo $row['other_skills']; ?></textarea>
 
             <button class="manage-button" type="submit">Update Details</button>
         </form>

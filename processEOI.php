@@ -17,7 +17,7 @@ unset($_SESSION["form"]);
 $new_eoi = validate_form($_POST);
 
 $_SESSION["form"] = $_POST;
-if ($new_eoi[0] === false) {
+if ($new_eoi[0] === false) { //if validation failed
     foreach ($new_eoi[1] as $key => $value) {
         $error_controller->set_error($key, $value);
     }
@@ -25,6 +25,7 @@ if ($new_eoi[0] === false) {
     exit();
 }
 
+//if validation passed, then create new eoi
 $result = $eoi_controller->create_eoi($new_eoi[1]);
 
 
