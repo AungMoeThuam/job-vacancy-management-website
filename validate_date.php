@@ -1,7 +1,6 @@
 <?php
 function is_leap_year($year)
 {
-    #if the year is divisibly by 4
     if ($year % 4 == 0 && ($year % 100 != 0 || $year % 400 == 0))
         return true;
     return false;
@@ -11,11 +10,8 @@ function validate_date_of_birth($date_of_birth)
 {
     if (trim($date_of_birth) === "")
         return false;
-    echo "passed empty<br>";
     $arr = [];
     preg_match_all("/\d+/", $date_of_birth, $arr);
-    var_dump($arr[0]);
-    echo "<br>";
     $year = intval($arr[0][2]);
     $month = intval($arr[0][1]);
     $day = intval($arr[0][0]);
@@ -24,25 +20,28 @@ function validate_date_of_birth($date_of_birth)
 
     if (($current_year - $year) < 15 || ($current_year - $year) > 80)
         return false;
-    echo "passed age<br>";
-    if (is_leap_year($year)) {
-        if ($month == 2 && $day <= 29) {
-            echo "passed feb in leap year<br>";
 
-            return true;
-        }
-        echo "not passed feb in leap year<br>";
-
+    $month_that_have_30days = [4, 6, 9, 11];
+    if (in_array($month, $month_that_have_30days) && $day > 30)
         return false;
 
-    } elseif ($month == 2 && $day <= 28) {
+    if (is_leap_year($year)) {
+        if ($month == 2 && $day <= 29) {
+            return true;
+        } else if ($month == 2 && $day > 29) {
+            return false;
+        } else {
+            return true;
+        }
 
-        echo "passed feb in not leap year<br>";
-        return true;
     }
-    echo "not passed feb in leap year<br>";
 
-    return true;
+    if ($month == 2 && $day <= 28)
+        return true;
+    else if ($month != 2)
+        return true;
+    else
+        return false;
 
 
 }

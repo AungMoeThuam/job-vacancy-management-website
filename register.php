@@ -5,7 +5,7 @@ start_session();
 include_once "./auth_controller.php";
 $auth_controller->check_auth();
 include_once "./error_controller.php";
-
+$page = "register";
 
 ?>
 <!DOCTYPE html>

@@ -31,7 +31,7 @@ $create_eoi_table = "CREATE TABLE IF NOT EXISTS eoi (
         other_skills TEXT,
         status ENUM('New', 'Current', 'Final') DEFAULT 'New' NOT NULL,
         gender ENUM('Male', 'Female') NOT NULL,
-        date_of_birth DATE NOT NULL
+        date_of_birth VARCHAR(10) NOT NULL
     )";
 
 $create_manager_table = "CREATE TABLE IF NOT EXISTS managers (

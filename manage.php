@@ -3,7 +3,7 @@ include_once "./start_session.php";
 start_session();
 include_once "./auth_controller.php";
 $auth_controller->check_auth();
-
+$page = "manage";
 
 include './settings.php';
 
@@ -26,9 +26,7 @@ if ($sortBy === 'first_name') {
     $orderBy = "ORDER BY EOInumber"; // Default sorting
 }
 
-// Fetch all EOIs from the database
-$sql = "SELECT * FROM eoi $orderBy";
-$result = $conn->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,20 +47,23 @@ $result = $conn->query($sql);
 
     <main class="manage-main">
         <h3 class="manage-title">Manage Job Applications</h3>
-        <div class="search-by">
-            <a href="./manage.php?search-by=job-ref-no">
-                <input type="radio" <?php if (!isset($_GET["search-by"]) || $_GET["search-by"] == "job-ref-no")
-                    echo "checked" ?>>
-                    Search by Job Reference No
-                </a>
-                <a href="./manage.php?search-by=names">
-                    <input type="radio" <?php if (isset($_GET["search-by"]) && $_GET["search-by"] == "names")
-                    echo "checked" ?>>
-                    Search by Name
-                </a>
-            </div>
+        <div class="search">
+            <a href="./manage.php?search-by=job-ref-no" <?php if (isset($_GET["search-by"]) && $_GET["search-by"] == "job-ref-no") {
+                echo "class='active'";
+            } ?>>
+                Search by Job Reference No
+            </a>
+            <a href="./manage.php?search-by=names" <?php if (isset($_GET["search-by"]) && $_GET["search-by"] == "names") {
+                echo "class='active'";
+            } ?>>
+                Search by Name
+            </a>
+            <a href="./manage-result.php?eoi=all&sort-by=">
+                View All
+            </a>
+        </div>
 
-            <div>
+        <div>
             <?php if (!isset($_GET["search-by"]) || $_GET["search-by"] == "job-ref-no"): ?>
                 <form action="./manage-result.php" method="get" class="searching-box">
                     <input class="manage-input" type="text" name="Job-Reference-No" id="Job-Reference-No"

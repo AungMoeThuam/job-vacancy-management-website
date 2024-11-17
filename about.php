@@ -1,6 +1,7 @@
 <?php
 include_once "./start_session.php";
 start_session();
+$page = "about";
 ?>
 <!DOCTYPE html>
 <html lang="en">

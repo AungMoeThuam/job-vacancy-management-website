@@ -555,21 +555,21 @@ nav {
 }
 
 .error-message {
-  display: none;
+  display: block;
   color: red;
   font-size: small;
 }
 
 /*showing error message if input does not follow the pattern rule */
 
-input:invalid ~ .error-message,
+/* input:invalid ~ .error-message,
 select:invalid ~ .error-message {
   display: block;
-}
+} */
 /*if the input are correct, hide the message */
-input:focus:valid ~ .error-message {
+/* input:focus:valid ~ .error-message {
   display: none;
-}
+} */
 
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
@@ -1174,7 +1174,6 @@ td {
   justify-content: space-between;
   height: 100dvh;
 }
-
 .manage-main {
   width: 100%;
   margin: auto;
@@ -1185,35 +1184,34 @@ td {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background-color: var(--fourthcolor);
   border-radius: 10px;
+  background-color: var(--fourthcolor);
 }
-.search-by a {
-  text-decoration: none;
-  padding: 2px;
-  border-radius: 3px;
-  margin: 2px;
+
+.search {
+  display: flex;
+  gap: 0.6rem;
+}
+.search a {
+  background-color: var(--thirdcolor);
+  border-radius: 5px;
+  padding: 5px;
   color: wheat;
 }
 
+.search a.active {
+  background-color: #99cc01;
+  color: var(--primarycolor);
+}
 .searching-box {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 
 .searching-box input[type="text"] {
   min-width: 300px;
-  max-width: 500px;
-}
-
-.searching-box input[type="submit"] {
-  color: var(--primarycolor);
-  padding: 10px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
 }
 
 /* register page */
@@ -1406,16 +1404,21 @@ main.login {
   gap: 10px;
   align-items: center;
 }
-
+a.back-btn {
+  background-color: var(--secondarycolor);
+  color: var(--primarycolor);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
 .edit-btn button,
 .delete-btn {
   background-color: var(--secondarycolor);
-  color: var(--primarycolor);
-  padding: 10px;
+  padding: 7px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
+
 .delete-btn {
   background-color: rgb(255, 61, 61);
   color: var(--fifthcolor);

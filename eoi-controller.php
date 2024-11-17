@@ -3,14 +3,17 @@ include_once "./settings.php";
 
 class Eoi_Controller
 {
+    private mysqli $db;
     function __construct($conn)
     {
         $this->db = $conn;
     }
+
     function get_all_eoi_rows($search, $sort_by)
     {
 
         $sql = "";
+        $search_by_all = $search;
         $search_job_ref_no = $search;
         $search_first_name = $search[0];
         $search_last_name = $search[1];
@@ -25,7 +28,9 @@ class Eoi_Controller
             $orderBy = "ORDER BY EOInumber"; // Default sorting
         }
 
-        if (!is_array($search) && $search_job_ref_no != "") {
+        if (!is_array($search) && $search_by_all == "all") {
+            $sql = "SELECT * FROM eoi ";
+        } else if (!is_array($search) && $search_job_ref_no != "") {
             $sql = "SELECT * FROM eoi WHERE job_reference_no = '$search_job_ref_no' $orderBy ";
         } else {
             $sql = "SELECT * FROM eoi WHERE first_name = '$search_first_name' OR last_name = '$search_last_name' $orderBy ";
@@ -46,27 +51,77 @@ class Eoi_Controller
         return $row;
     }
 
+    function create_eoi($new_eoi)
+    {
+        $job_reference_no = $new_eoi["job_reference_no"];
+        $first_name = $new_eoi["first_name"];
+        $last_name = $new_eoi["last_name"];
+        $street = $new_eoi["street"];
+        $town = $new_eoi["town"];
+        $state = $new_eoi["state"];
+        $postcode = $new_eoi["postcode"];
+        $email = $new_eoi["email"];
+        $phone = $new_eoi["phone"];
+        $skill1 = $new_eoi["skill1"];
+        $skill2 = $new_eoi["skill2"];
+        $skill3 = $new_eoi["skill3"];
+        $skill4 = $new_eoi["skill4"];
+        $other_skills = $new_eoi["other_skills"];
+        $date_of_birth = $new_eoi["date_of_birth"];
+        $gender = $new_eoi["gender"];
+
+        $sql = "SELECT job_reference_no FROM job_descriptions WHERE job_reference_no = '$job_reference_no'";
+        $result = $this->db->query($sql);
+        if ($result->num_rows == 0)
+            return false;
+
+        $sql = "INSERT INTO eoi 
+                (job_reference_no, first_name, last_name, date_of_birth, gender, street, town, state, postcode, email, phone, skill1, skill2, skill3, skill4, other_skills) 
+                VALUES 
+                (
+                '$job_reference_no',
+                '$first_name',
+                '$last_name',
+                '$date_of_birth',
+                '$gender',
+                '$street',
+                '$town',
+                '$state',
+                '$postcode',
+                '$email',
+                '$phone',
+                '$skill1',
+                '$skill2',
+                '$skill3',
+               '$skill4',
+               '$other_skills'
+            )";
+        $result = $this->db->query($sql);
+        var_dump($result);
+        return true;
+
+    }
+
     function update_eoi($new_eoi)
     {
-        // Escape special characters to prevent SQL injection
-        $EOInumber = htmlspecialchars($new_eoi['EOInumber']);
-        $first_name = htmlspecialchars($new_eoi['first_name']);
-        $last_name = htmlspecialchars($new_eoi['last_name']);
-        $street = htmlspecialchars($new_eoi['street']);
-        $town = htmlspecialchars($new_eoi['town']);
-        $state = htmlspecialchars($new_eoi['state']);
-        $postcode = htmlspecialchars($new_eoi['postcode']);
-        $email = htmlspecialchars($new_eoi['email']);
-        $phone = htmlspecialchars($new_eoi['phone']);
-        $skill1 = htmlspecialchars($new_eoi['skill1']);
-        $skill2 = htmlspecialchars($new_eoi['skill2']);
-        $skill3 = htmlspecialchars($new_eoi['skill3']);
-        $skill4 = htmlspecialchars($new_eoi['skill4']);
-        $other_skills = htmlspecialchars($new_eoi['other_skills']);
-        $status = htmlspecialchars($new_eoi['status']);
-        $date_of_birth = htmlspecialchars($new_eoi['date_of_birth']);
-        $gender = htmlspecialchars($new_eoi['gender']);
-        $job_reference_no = htmlspecialchars($new_eoi['job_reference_no']);
+        $EOInumber = $new_eoi["EOInumber"];
+        $job_reference_no = $new_eoi["job_reference_no"];
+        $first_name = $new_eoi["first_name"];
+        $last_name = $new_eoi["last_name"];
+        $street = $new_eoi["street"];
+        $town = $new_eoi["town"];
+        $state = $new_eoi["state"];
+        $postcode = $new_eoi["postcode"];
+        $email = $new_eoi["email"];
+        $phone = $new_eoi["phone"];
+        $skill1 = $new_eoi["skill1"];
+        $skill2 = $new_eoi["skill2"];
+        $skill3 = $new_eoi["skill3"];
+        $skill4 = $new_eoi["skill4"];
+        $other_skills = $new_eoi["other_skills"];
+        $date_of_birth = $new_eoi["date_of_birth"];
+        $gender = $new_eoi["gender"];
+        $status = $new_eoi["status"];
 
         // Construct the SQL query
         $sql = "UPDATE eoi SET 
@@ -91,6 +146,13 @@ class Eoi_Controller
 
         return $this->db->query($sql);
     }
+
+    function delete_single_eoi($eoi_id)
+    {
+        $sql = "DELETE FROM eoi WHERE EOInumber = '$eoi_id'";
+        $this->db->query($sql);
+    }
+
 }
 
 $eoi_controller = new Eoi_Controller($conn);

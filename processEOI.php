@@ -3,59 +3,57 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     header("location: ./index.php");
     exit();
 }
-include "./utilities/start_session.php";
+include "./start_session.php";
 start_session();
-include_once "./controllers/error_controller.php";
-include_once "./utilities/validate_input.php";
-include_once './settings.php';
-
-
-// Check if form data is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    validate_form($_POST);
-    exit();
+include_once "./error_controller.php";
+include_once "./eoi-controller.php";
+include_once "./validate_input.php";
 
 
 
-    // $error_controller->set_error("job_reference_no", " Job Reference Number is required and exactly 5 alphanumeric
-    //         characters accepted.");
 
+$error_controller->clear_all_errors();
+unset($_SESSION["form"]);
+$new_eoi = validate_form($_POST);
 
-
-    // Insert the validated data into the database with underscores in column names
-    $insertSQL = $conn->prepare(
-        "INSERT INTO eoi 
-        (job_reference_no, first_name, last_name, date_of_birth, gender, street, town, state, postcode, email, phone, skill1, skill2, skill3, skill4, other_skills) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-    );
-    $insertSQL->bind_param(
-        "ssssssssssssssss",
-        $job_reference_no,
-        $first_name,
-        $last_name,
-        $date_of_birth,
-        $gender,
-        $street,
-        $town,
-        $state,
-        $postcode,
-        $email,
-        $phone,
-        $skill1,
-        $skill2,
-        $skill3,
-        $skill4,
-        $other_skills
-    );
-
-    if ($insertSQL->execute()) {
-        echo "EOI submitted successfully. Your EOI number is: " . $conn->insert_id;
-    } else {
-        echo "Error: " . $conn->error;
+$_SESSION["form"] = $_POST;
+if ($new_eoi[0] === false) {
+    foreach ($new_eoi[1] as $key => $value) {
+        $error_controller->set_error($key, $value);
     }
-
-    $insertSQL->close();
+    header("location: ./apply.php");
+    exit();
 }
 
-$conn->close();
+$result = $eoi_controller->create_eoi($new_eoi[1]);
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create EOi</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body class="manage">
+    <main class="manage-main">
+        <?php if (!$result): ?>
+            <p class="manage-title">Invalid Job Reference Number! </p>
+            <button><a href="./apply.php">Go Back</a></button>
+        <?php else: ?>
+            <?php
+            unset($_SESSION["form"]) ?>
+
+            <p class="manage-title">Your have submitted job application!</p>
+            <button><a href="./apply.php">Go Back</a></button>
+
+        <?php endif ?>
+    </main>
+</body>
+
+</html>

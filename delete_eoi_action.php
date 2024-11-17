@@ -5,20 +5,18 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 }
 include_once "./start_session.php";
 start_session();
-
-
-include_once "./settings.php";
+include_once "./eoi-controller.php";
 $eoi_id = $_POST["delete-eoi-id"];
 $delete = isset($_POST["delete"]) ? $_POST["delete"] : false;
 
 
-$sql = "DELETE FROM eoi WHERE EOInumber = '$eoi_id'";
 
 
 if ($delete == true) {
-    $conn->query($sql);
-    $url = "location: ." . $_SESSION["previous_url"];
+    $eoi_controller->delete_single_eoi($eoi_id);
+    $url = "location: " . $_SESSION["previous_url"];
     header($url);
+    exit();
 }
 ?>
 

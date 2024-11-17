@@ -3,9 +3,8 @@ include_once "./start_session.php";
 start_session();
 include_once "./auth_controller.php";
 $auth_controller->check_auth();
-
 include_once "./eoi-controller.php";
-
+$page = "manage";
 // Set default sorting option
 $sortBy = "EOInumber"; // Default is sorting by EOInumber
 
@@ -18,6 +17,7 @@ function check($key)
 {
     return !isset($_GET[$key]) ? "" : $_GET[$key];
 }
+$search_by_all = check("eoi");
 $search_job_ref_no = check("Job-Reference-No");
 $search_first_name = check("First-Name");
 $search_last_name = check("Last-Name");
@@ -31,13 +31,15 @@ function display_skill_if_exist($skill)
 
 function search_by($array)
 {
-    if ($array[0] != "")
+    if ($array[0] == "all")
         return $array[0];
+    else if ($array[1] != "")
+        return $array[1];
     else
-        return [$array[1], $array[2]];
+        return [$array[2], $array[3]];
 }
 
-$result = $eoi_controller->get_all_eoi_rows(search_by([$search_job_ref_no, $search_first_name, $search_last_name]), $sortBy);
+$result = $eoi_controller->get_all_eoi_rows(search_by([$search_by_all, $search_job_ref_no, $search_first_name, $search_last_name]), $sortBy);
 
 
 ?>
@@ -85,10 +87,9 @@ $result = $eoi_controller->get_all_eoi_rows(search_by([$search_job_ref_no, $sear
 
                 <input type="submit" value="Go">
             </form>
-            <form action="./manage-result.php" method="post">
-                <h4>Action</h4>
-                <input type="submit" value="Delete All">
-            </form>
+            <a href="./manage.php" class="back-btn">
+                Back
+            </a>
         </div>
         <div class="eoi-result">
             <table>
@@ -113,7 +114,7 @@ $result = $eoi_controller->get_all_eoi_rows(search_by([$search_job_ref_no, $sear
 
 
                     if ($result->num_rows > 0) {
-                        // Output each row
+
                         while ($row = $result->fetch_assoc()) {
 
                             echo "<tr>";

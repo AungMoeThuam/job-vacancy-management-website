@@ -1,7 +1,7 @@
 <?php
 include_once "./start_session.php";
 start_session();
-
+$page = "home";
 ?>
 <!DOCTYPE html>
 <html lang="en">

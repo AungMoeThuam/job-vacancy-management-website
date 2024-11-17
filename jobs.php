@@ -3,6 +3,7 @@ include_once "./start_session.php";
 start_session();
 include_once "./job_description_controller.php";
 include_once "./to_array.php";
+$page = "jobs";
 $job_descriptions = $job_description_controller->get_all_job_rows();
 ?>
 <!DOCTYPE html>

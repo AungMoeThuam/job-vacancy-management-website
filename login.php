@@ -3,6 +3,7 @@ include_once "./start_session.php";
 start_session();
 include_once "./auth_controller.php";
 include_once "./error_controller.php";
+$page = "login";
 
 $auth_controller->check_auth();
 // echo $_SERVER['REQUEST_URI'];

@@ -5,6 +5,8 @@ include_once "./auth_controller.php";
 $auth_controller->check_auth();
 include_once "./eoi-controller.php";
 
+
+
 $EOInumber = $_GET["EOInumber"];
 $row = $eoi_controller->get_single_eoi_row($EOInumber);  // Returns the first row as an associative array
 
