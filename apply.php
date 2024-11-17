@@ -4,7 +4,7 @@ start_session();
 include_once "./error_controller.php";
 $page = "apply";
 $form = isset($_SESSION["form"]) ? $_SESSION["form"] : null;
-var_dump($form);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

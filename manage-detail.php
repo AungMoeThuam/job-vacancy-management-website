@@ -4,7 +4,7 @@ start_session();
 include_once "./auth_controller.php";
 $auth_controller->check_auth();
 include_once "./eoi-controller.php";
-
+$page = "update";
 
 
 $EOInumber = $_GET["EOInumber"];

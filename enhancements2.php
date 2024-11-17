@@ -19,7 +19,7 @@ $page = "enhancements2";
     <?php include "./header.php" ?>
 
     <main class="enhancement">
-        <h1>Enhancements2</h1>
+        <h1>Major Enhancements2</h1>
 
         <section class="enhancement-card">
             <img src="images/retriving_database.png" alt="Retriving Database">
@@ -48,21 +48,18 @@ $page = "enhancements2";
             </article>
         </section>
         <section class="enhancement-card">
-            <video src="./images/responsiveness.mp4" autoplay muted loop></video>
+            <img src="./images/detail.png"></img>
             <article class="description">
-                <h2>Responsiveness</h2>
+                <h2>Update Detail EOi</h2>
                 <p>
-                    Every page is responsive. We use media query for each page to make
-                    it responsive. Depending on different style and content of the
-                    pages, we had to implement different rules for each page. The
-                    following code is for about us page.
+                    Manager is able to update the detail information of a job application in the manage detail page.
                 </p>
-                <a href="./about.php">To About Us Page</a>
+
                 <details>
-                    <summary>Show Code Implementation in about us page</summary>
+                    <summary>Show Code Implementation</summary>
 
                     <article class="code">
-                        <img src="./images/responsiveness-code.png" alt="About Us Page Responsiveness Code" />
+                        <img src="./images/detail-code.png" alt="Manage Detail Code" />
                     </article>
                 </details>
             </article>
@@ -98,7 +95,7 @@ $page = "enhancements2";
         <section class="enhancement-card">
             <img src="./images/form.png" alt="form" />
             <article class="description">
-                <h2>Page Management</h2>
+                <h2>Authentication for Manager</h2>
                 <p>
                     In a web application, the manager page should be accessible only to authenticated users.
                     If a user has not logged in, they will be unable to access the manager page.
@@ -111,25 +108,26 @@ $page = "enhancements2";
                     which verifies both the username and password to authenticate the manager.
                     If the manager is not logged in or their session is not active, any attempt to access the manager
                     page will be blocked,
-                    and they will be redirected to the login page. This ensures that only authenticated managers can
+                    and they will be redirected to the home page. This ensures that only authenticated managers can
                     view or manage sensitive information within the system.
                     The `create_manager` function allows for the registration of new managers by adding them to the
                     database,
-                    ensuring that only authorized users can manage the system's resources.
+                    ensuring that only authorized users can manage the system's resources. Managers are able to delete
+                    and edit eoi applications.
                 </p>
 
-                <a href="./manage.php">To Manage</a>
+                <a href="./manage.php">Click here To Manage Page if it will redirect to index if it not logged in</a>
                 <details>
-                    <summary>Show Code Implementation in about us page</summary>
+                    <summary>Show Code Implementation </summary>
 
                     <article class="code">
-                        <img src="./images/manage_page.png" alt="Form Message Code" />
+                        <img src="./images/authentication_code.png" alt="Form Message Code" />
                     </article>
                 </details>
             </article>
         </section>
         <section class="enhancement-card">
-            <video src="./images/image-scale.mp4" loop muted autoplay></video>
+            <img src="./images/register.png"></img>
             <article class="description">
                 <h2>Manage registration</h2>
                 <p>
@@ -142,7 +140,8 @@ $page = "enhancements2";
                     the management dashboard.
                     Error handling is integrated throughout the process to inform the user of any issues,
                     ensuring a smooth and secure registration experience.
-                    <a href="./register_manager.php">To Registration Page</a>
+                    <a href="./register.php">Cick here To Registration Page, it will redirect to home page if it is
+                        already logged in</a>
                 <details>
                     <summary>Show Code Implementation</summary>
 
