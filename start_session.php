@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "GET" && str_contains($_SERVER['REQUEST_URI'], "/start_session.php")) {
+if ($_SERVER["REQUEST_METHOD"] == "GET" && strpos($_SERVER['REQUEST_URI'], "/start_session.php")) {
     header("location: ./index.php");
     exit();
 }

@@ -1,10 +1,12 @@
 <?php
 
 
-$host = "localhost";
-$username = "root";
-$password = "";
-$database = "jobs";
+$host = "feenix-mariadb.swin.edu.au";
+$username = "s105292899";
+$password = "061002";
+$database = "s105292899_db";
+
+
 
 $conn = new mysqli($host, $username, $password, $database);
 

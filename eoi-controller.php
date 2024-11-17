@@ -97,7 +97,6 @@ class Eoi_Controller
                '$other_skills'
             )";
         $result = $this->db->query($sql);
-        var_dump($result);
         return true;
 
     }
